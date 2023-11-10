@@ -1,0 +1,133 @@
+
+Passage de Mehdi en Juin 2023
+
+
+Installation du Groom
+
+Entrée: 8 slots allumées si circuit ouvert, éteints si circuit fermé.
+Sortie: 8 slots, éteints si pas de Voltage, allumés en vert si Voltage mis,  en rouge si court circuit
+
+2 fils sont côte à côte.
+Mettre la masse à droite.
+
+- - - - - - - - - - -
+
+On a enlevé les contrôles de base du LaucnhPad,
+mais on sait tout refaire à la main
+
+launchpad.py
+-> declaration initial du LaunchPad
+et 
+des fonctions à appeler pour remplir l'interface en question
+ces fonctions retourne un Block avec des éléments comme rowButton
+
+Lire le fichier envoyé par Mehdi, contenant tous les exemples possibles
+
+
+- - - - - - - - - - -
+
+Code
+
+Le code démarre dans scenario.py
+
+On y déclare les 
+
+
+hardware.py  -> déclaration des grooms et de leur Pins, en leur donnant un nom
+Rajouter ici les addresse de dmx
+
+
+
+game.py -> déclaration d'une écoute d'un pin d'un groom
+Ecoute d'un bouton
+trois effects: ventouseOnOff, lancer d'un son, fxDmx, envoiMessageUnity
+
+
+dmxMgr 
+
+soundMgr
+
+
+
+unity.py -> montre comment gérer socketio
+	ce qui permet de communiquer avec Unity
+	et créer un bouton pour le launchpad
+
+
+Dans Unity, voir le Proj_Fairies
+
+les socketIO sont gérées par un code "SocketIOCommunicator"
+puis dans nos scripts, voir
+SocketReceiver
+et
+SequenceMgr
+
+
+
+Exemple d'anim en utilisant le scheduler
+voir AnimTest dans dmxMgr
+
+- - - - - - - - - - - - - - - -
+
+Test du petit écran 250$
+Android basic
+
+On a pu lancer Les Fées et recevoir les messages d'un groom
+
+- - - - - - - - - - - - - - - -
+on a pu mettre en série sur DMX
+Un Spot
+Une led Addressable
+
+- - - - - - - - - - - - - - - -
+
+LED
+Spot
+LedAddresssable
+Ventouse
+Bouton
+
+pas fait PWM
+
+- - - - - - - - 
+Doit nous donner une solution pour les sons
+qui ne soit pas SoundBoard
+
+
+On doit décider ce qui sera SoundBoard
+
+Les capteurs non binaire à lister
+
+Capteurs RFID pour Chaudron
+
+
+- - - - - - - - 
+
+
+Manquait un certificat (https) 
+
+
+- - - - - - - - 
+Docker a lancer
+
+
+faire depuis 
+/opt/magichanism/scenarios/dedale
+docker-compose logs -f game-server
+pour voir les messages d'erreur
+
+Le code se recompile et se relance dès qu'on le sauve
+
+- - - -- - - - - 
+gitHub
+
+projet: Game_Scenario
+
+-- - - - - - 
+Réfléchir à l'architecture du serveur
+et 
+besoins 
+
+
+
+

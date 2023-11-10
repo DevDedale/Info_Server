@@ -1,0 +1,12 @@
+Bloquer les mises à jour automatiques Windows 11
+
+- Accéder à l'éditeur de stratégie de groupe locale en recherchant gpedit.msc dans le menu démarrer ou la recherche Windows.
+- Dans la colonne de gauche, naviguer jusqu'à : Configuration ordinateur > Modèles d'administration > Composants Windows > Windows Update > Gérer l'expérience utilisateur final.
+- Ouvrir "Configuration du service Mises à jour automatiques".
+- Sélectionner Désactivé pour bloquer les mises à jour auto, ou bien Non configuré pour restaurer les paramètres par défaut puis cliquer sur le bouton OK.
+
+Pour effectuer les mises à jour manuellement : 
+
+- Accéder aux paramètres Windows, en recherchant Paramètres dans le menu démarrer où la recherche Windows. (ou bien avec le raccourci clavier touche Windows + I)
+- Dans la liste à gauche cliquer sur Windows Update.
+- En haut à droite, cliquer sur Rechercher des mises à jour / Installer.

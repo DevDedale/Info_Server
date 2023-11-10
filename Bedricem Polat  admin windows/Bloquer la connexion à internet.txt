@@ -1,0 +1,21 @@
+Pour bloquer la connexion à internet :
+
+- Accéder au panneau de configuration via le menu démarrer ou la recherche Windows (control.exe).
+- Accéder au Centre Réseau et partage et cliquer sur "Modifier les paramètres de la carte" dans les options à gauche pour accéder aux Connexions Réseau.
+- Accéder aux propriétés de la carte réseau Ethernet en faisant clic droit dessus.
+- Sélectionner Protocole Internet Version 4 (TCP/IPv4) dans la liste puis cliquer sur le bouton Propriétés en bas à droite de la liste.
+- Dans l'onglet Général, sélectionner l'option "Utiliser l'adresse IP suivante :" puis entrer les valeurs suivantes : 
+	Adresse IP : 10.65.0.118
+	Masque de sous réseau : 255.255.255.0
+	Passerelle par défaut : 1.0.0.0
+Puis cliquer sur le bouton OK.
+- Cliquer sur Oui lorsque l'avertissement s'affiche.
+
+
+Pour restaurer la connexion à internet :
+
+- Répeter les cinq premières étapes au dessus et sélectionner l'option Obtenir une adresse IP automatiquement puis cliquer sur le bouton OK.
+
+Si la connexion internet n'est toujours pas restaurée après avoir effectué l'étape précédente : 
+
+- Dans les connexions réseau (étape 2) faire un clic droit sur la carte réseau Ethernet puis cliquer sur Désactiver puis refaire un clic droit sur Réseau et cliquer sur Activer.

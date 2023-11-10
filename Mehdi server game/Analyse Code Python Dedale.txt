@@ -1,0 +1,287 @@
+questions restantes
+
+- lancer un son qui est sur le server (l'exemple est avec une radio)
+
+- 
+
+
+
+
+*********************
+Patrick
+2023 09 14
+
+structure de l'app
+*********************
+
+Démarrage dans scenario.py
+
+
+initialise toutes les classes
+
+Hardware
+Ui
+Pui enfin Game
+
+puis envoie la fonction GameInit sur chaque salle
+(on ajoutera un bouton sur l'interface d'initialization du game)
+
+
+
+
+
+
+
+
+
+
+
+
+*********************
+Patrick
+2023 09 12
+
+Les differents HowTo
+*********************
+
+
+scenario.py  		#lance tout
+
+unity.py   		#comunication avec Unity par socketIO
+dmxMgr.py
+soundMgr.py
+
+
+
+ui/
+launchpad.py		#lance l'interface visible sur l'app launchpad
+
+
+
+rooms/
+
+roomTest/
+ui.py
+hardware.py
+game.py
+
+
+roomMagic/
+uiMagic.py		#ajout de boutons sur l'app launchpad
+hardwareMagic.py	#declaration des grooms et soundboard
+gameMagic.py		#code de gestion de la salle
+
+
+roomCrypt/
+uiCrypt.py
+hardwareCrypt.py
+gameCrypt.py
+
+
+
+
+
+*************************************
+*************************************
+Ecouter ou Actionner une pin d'un Groom
+*************************************
+
+Dans hardware.py declarer le groom et ses pins
+  def __init__ (self) :
+    self.groom = self.logic.devices.magigroom('groom-4827e2674dd7')
+    self.buttonResetMagic = self.groom.inputbay(3).gpio(3)
+    self.ventouseSkullTouch = self.groom.outputbay(2).gpio(0)
+
+Dans __int__ de Game.ui lier le pin avec une callback
+  def __init__ (self, hardware, scenario) :
+    self.hardware = hardware
+    self.hardware.buttonResetMagic.on_change(self.callResetMagic, call_immediately = False) #ecoute d'une entrée
+    self.hardware.ventouseSkullTouch.set(False) #mettre une valeur en sortie
+
+  def callResetMagic(self, value):
+    if(not value) :
+      self.ResetMagic()
+ 
+
+
+
+*************************************
+*************************************
+Commander DMX
+*************************************
+
+dans hardware.py déclarer l'interface dmx
+
+class HardwareMagic :
+
+  def __init__ (self) :
+    self.dmx = GameLogic().devices.dmx('soundboard')   # nécessite de connaître le nom ou l'adresse du support dmx
+
+
+dans le code mettre une valeur a un des 512 valeurs possibles du dmx
+
+    self.dmx.frame(i+1).set(128)
+ 
+
+
+*************************************
+*************************************
+Lancer un son
+*************************************
+
+copier le code de soundMr.py
+notamment toute la declaration qui est impossible à comprendre
+
+
+class SoundMgr :
+
+  def __init__(self, logic) :
+    self.unison = logic.devices.unison()
+    self.configure_unison()  
+
+    #déclarer une zone
+    #et lui donner un nom  
+    self.taverneEnceinte0 = self.unison.zone('0')
+
+    #indiquer le nom du fichier source
+    self.sourceFip.url.set('http://icecast.radiofrance.fr/fip-midfi.mp3')
+
+    #le jouer ou l'arreter
+    self.sourceFip.play.set(True)
+    self.sourceFip.play.set(False)
+
+
+
+*************************************
+*************************************
+Message de debug
+*************************************
+
+
+les messages sont visibles 
+   self.scenario.logic.log_error('ResetMagic')
+
+
+
+
+
+*************************************
+*************************************
+créer une animation
+*************************************
+
+dans scenario, lancer le scheduler au depart
+
+
+class LaunchpadScenario(Scenario):
+
+    def initialize(self):
+        self.logic.scheduler.every(30, self.step)
+
+   #créer une fonction animable
+  def AnimMagicTest(self) :
+    def _anim(eventAskToQuit) :
+      i = 1
+      while(not eventAskToQuit.is_set()) :   #permet d'assurer l'arret en fin de scenario
+        self.dmx.frame(i).set(0)
+        time.sleep(0.05)
+        i = i+3
+        i = (i%255)
+        
+  #lancer l'anim
+    GameLogic().scheduler.now(_anim)
+   
+
+
+
+
+
+
+*************************************
+*************************************
+Ajouter un bouton sur l'interface web
+*************************************
+
+Dans ui.py déclarer les boutons dans get_ui()
+exemple dans uiMagic.py
+
+class UIMagic :
+
+  def __init__ (self, game) :
+    
+    self.game = game
+
+  def get_ui(self):
+        return Block(
+                title="Magic",
+                content = [
+                    ContentRow([
+			#ici on simule une mise à ON d'une pin d'un groom
+			#ce qui permet les effets sans que le capteur soit enclenché
+                        RowButton('anticooruption', click=self.game.hardware.buttonMagicAnticorruption.setter(True)),
+           
+			#ici on appelle une callback
+                        RowButton('reset magic', click=self.game.ResetMagic),
+                     ])
+                ],
+            )
+
+
+Attention get_ui doit être rajoutée dans launchpad.ui
+
+class LaunchpadPage(Page):
+    def __init__(self, scenario):
+        self.scenario = scenario
+        self.logic = self.scenario.logic
+        Page.__init__(self,
+            phase = "Jeu",
+            name = "Launchpad",
+
+            ui = [ 
+                self.scenario.unity.get_ui(),
+                self.scenario.UIMagic.get_ui()   #ici
+            ],
+        ),
+
+
+
+
+
+*************************************
+*************************************
+Dialoguer avec Unity
+*************************************
+
+exemple dans unity.ui
+
+class UnityGame:
+    def __init__(self, scenario):
+        self.logic = scenario.logic
+
+        self.siossequence = self.logic.devices.sios('Fairy').state('sequence')
+        self.siosfeedback = self.logic.devices.sios('Fairy').state('feedback')
+
+   def get_ui(self):
+        return Block(
+                title="Fees",
+                content = [
+                    ContentRow([
+                        RowDynamicText(self.siosfeedback)
+                    ]),
+                    ContentRow([
+                        RowButton('remise a zero', click=self.siossequence.setter(0)),  #chaque bouton met un evaleur different à "Fairy/Sequence"
+                        RowButton('arrivee des fees', click=self.siossequence.setter(1)),
+                        RowButton('merci pour 1 ou 2', click=self.siossequence.setter(2)),
+                        RowButton('merci pour toutes', click=self.siossequence.setter(3)),
+                        RowButton('1 min avant fin', click=self.siossequence.setter(4)),
+                        RowDynamicText(self.siossequence)
+                     ])
+                ],
+            )
+
+
+voir dans le projet unity  Proj_Fairies/SocketIOReceiver.cs comment écouter les messages du pad
+
+
+
+
