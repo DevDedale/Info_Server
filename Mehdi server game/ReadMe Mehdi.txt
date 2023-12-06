@@ -84,5 +84,11 @@ mosquitto_sub -h 10.65.0.200 -t '#' -v | grep groom
 mosquitto_sub -h 10.65.0.200 -t '#' -v | grep connected
 pour voir les adresses des appareils sur le reseau
 
+mosquitto_sub -h 10.65.0.200 -t '#' -v | grep dmx
+
+mosquitto_sub -h 10.65.0.200 -t '#' -v | grep answer
+mosquitto_pub -h 10.65.0.200 -t mytopic/test -m "mon message"
+mosquitto_pub -h 10.65.0.200 -t mytopic/test -m '"mon message"'   //message en JSon
+
 
 
