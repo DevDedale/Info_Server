@@ -1,1 +1,201 @@
-...
+
+On a reçu Mehdi le 5 décembre 2023.
+
+On a fait le point sur:
+
+1 - - - - - - - 
+les codes de l'interface Web
+On a vu 
+comment créer du Multipage en faisant plusieurs objet comme Launchpad
+comment afficher de l'info formattée
+comment utiliser la notion de state 
+la difference entre setter() et set()
+
+
+2 - - - - - - - 
+les LED adressables
+On n'a pas réussi à finaliser cette partie
+Mehdi doit nous dire quel bande de LED acheter (mail envoyé)
+On a récupér 10 "ws2812 controller"
+
+On a vu comment flasher du code dessus.
+Il faut un petit composant qui permet d'avoir une prise USB sur le ws2812 Controller
+
+Le code est utilisable dans l'interface arduino
+Le code main.ino est dans Bureau/Codes/LEDws2812 et sur gitHub
+Il faut initialiser plusieurs trucs dans l'interface arduino
+Faire le point avec Olivier
+
+3 - - - - - - 
+Dans le même programme, main.ino,  on voit l'utilisation de MQTT sur esp ou arduino
+Le code montre la discussion MQTT avec le server
+On pourra utiliser la même chose sur Arduino
+Le code coté server est dans 
+src/rooms/roomMagic/ws2812Controller.py
+
+3 bis - - - - - - 
+On peut utiliser Mosquitto_sub pour écouter les messages MQTT
+et Mosquitto_pub pour en créer un manuellement
+
+ex:
+mosquitto_sub -h 10.65.0.200 -t '#' -v | grep dmx
+
+-h 10.65.0.200	-->	nom du server
+-t '#'		-->	tous le stopics
+- v		-->	verbose
+grep		-->	selectionner les messages d'intérêt
+
+mosquitto_pub -h 10.65.0.200 -t mytopic/test -m "mon message"
+
+-t mytopic/test	-->	topic
+-m		-->	message
+
+
+4 - - - - - - 
+Le système de détection du rfid
+
+Le code python est dans roomAuberge
+
+declaration du raspberry dans hardwareAuberge.py:
+self.chaudron = self.logic.devices.raspberry('mgi-simultaneous-reader').srtr().tags
+
+utilisation dans gameAuberge.py
+
+class GameAuberge :
+  def __init__(self, hardware, scenario) :
+    self.scenario = scenario
+    self.hardware = hardware
+    self.logic = self.hardware.logic
+    chaudron = self.hardware.chaudron
+    
+    chaudron.stop()
+    #chaudron.start(1000, 1)  #puissance emmission, retained detection
+    chaudron.on_change(self.on_tags)
+    
+  def on_tags(self,values) :
+    if values is None:
+      return
+    for t,rssi in values.items() :
+      self.logic.log_error(f"ID={t} strength={rssi}")
+
+NB:
+On commence toujours par un stop()
+On a commenté le start() car il ne faut pas utiliser l'antenne sans raison
+Le on_change recoit la liste des tags détectés avec leur niveau de détection en DB
+Si on bouge 'on touille' on devrait voir les DB changer
+
+
+5 - - - - - - 
+Le son
+
+Le code est dans soundMgr.py
+
+Mehdi a écrit la fonction
+def configure_unison(self):
+
+qui dit notamment, les adresses IP de la soundboard et du server
+!! il faut les fixer au niveau du routeur
+
+qui définit 8 zones pour la soundboard
+et 6 zones pour le server
+
+Pour les utiliser on définit une source:
+    self.sourceFip = self.unison.zone('8').source('fip')
+
+    #self.sourceFip.url.set('http://icecast.radiofrance.fr/fip-midfi.mp3')
+    self.sourceFip.url.set(self.unison.logic.current_scenario.get_http_asset('music/Corruption3.mp3'))
+    self.sourceFip.loop.set(True)
+    self.sourceFip.gain.set(-1)
+    self.sourceFip.play.set(True)
+
+on peut choisir le fichier à jouer
+faire play True/False
+faire loop True/False
+choisir le gain (en DB)
+
+Attention pour faire repartir le son au début, il faut le recharger avec set
+
+NB: les fichiers sons ont été placés dans
+
+/opt/magichanism/scenarios/data/assets/www/music/
+et non avec les src
+
+6 - - - - - -
+Accès au routeur, pour rendre fixe les adresses IP du server et du soundboard
+
+Dans browser:
+https://10.0.65.1
+login:ubnt
+mdp:Caiv5Boo
+
+L'interface apparaît:
+Dans l'onglet "Services"
+Choisir à droite le menu "Actions" puis "View Lease"
+
+On voit la liste des appareils, et dans un autre onglet les appareils statics
+mgi-dedale 10.0.65.200
+soundboard 10.65.0.96
+
+ 
+7 - - - - - - 
+Le PC Android - Installer un apk
+
+On a installé une apk sur le PCAndroid
+Pour cela, Mehdi a installé adb sur le server
+
+
+Il faut importer l'apk dans le dossier assets du server.
+
+On ouvre une session mobaXTerm dans ce même dossier.
+
+Il faut connaître l'adresse IP du PC
+on peut le faire via l'interface du routeur
+ou à la main:
+
+nmap -p 5555 --open 10.65.0.*
+
+qui montre les appareils avec le port 5555 réactifs
+ici 10.0.65.97
+
+puis on fait:
+adb connect 10.65.0.97:5555
+
+puis:
+adb install Magic_Revoice.apk
+
+
+
+
+8 - - - - - -
+carterettes
+
+Mehdi nous a montré ses carterettes.
+On les attends avec impatience
+
+9 - - - - - -
+Utilisation de telnet
+
+depuis une session mobaxterm
+telnet <IP>
+(faire 2 fois entrée)
+
+commandes
+list   -> infos
+wifi   -> sur quel réseau wifi il est
+help
+
+board.debug (je ne sais plus)
+deinhibit   (je ne sais plus)
+
+- - - - - - - - - - - -
+A Faire
+- - - - - - - - - - - -
+
+Ajouter une page son sur l'interface pour emettre tous les sons de benjamin
+
+Ajouter une page grooms sur l'interface pour 
+activer désactiver chaque sortie
+voir l'état de chaque entrée
+
+
+
