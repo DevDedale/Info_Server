@@ -11,6 +11,9 @@ comment afficher de l'info formattée
 comment utiliser la notion de state 
 la difference entre setter() et set()
 
+ici, on ajoute une fonction set(True) renvoyée par setter dans un RowButton
+ RowButton('test ws2812', click=self.game.hardware.LED1Ctrl.animation.setter(True)),
+
 
 2 - - - - - - - 
 les LED adressables
@@ -32,6 +35,10 @@ Le code montre la discussion MQTT avec le server
 On pourra utiliser la même chose sur Arduino
 Le code coté server est dans 
 src/rooms/roomMagic/ws2812Controller.py
+
+dans src/rooms/roomMagic/hardwareMagic
+self.LED1Ctrl = self.logic.devices.ws2812('LED1')
+
 
 3 bis - - - - - - 
 On peut utiliser Mosquitto_sub pour écouter les messages MQTT
