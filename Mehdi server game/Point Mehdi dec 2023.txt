@@ -27,6 +27,11 @@ Il faut un petit composant qui permet d'avoir une prise USB sur le ws2812 Contro
 Le code est utilisable dans l'interface arduino
 Le code main.ino est dans Bureau/Codes/LEDws2812 et sur gitHub
 Il faut initialiser plusieurs trucs dans l'interface arduino
+
+Déclarer le port
+Déclarer le type de carte "esp8266 Node MCU"
+rajouter la librairy Adafruit Neopixel EspMQTTClient
+
 Faire le point avec Olivier
 
 3 - - - - - - 
