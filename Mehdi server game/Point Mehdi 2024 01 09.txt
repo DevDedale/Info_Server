@@ -1,14 +1,72 @@
+- - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - -
+Choses à faire avec Mehdi le 2024 01 09
+- - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - -
 
-Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier
+
+- - - - - - - - - - - - - - - - - - - - - - -
+Soundboard
+- - - - - - - - - - - - - - - - - - - - - - -
+Priorité des priorités, réparer la soundboard.
+
+Tester du son avec l'interface web
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - -
+WS2812
+- - - - - - - - - - - - - - - - - - - - - - -
+On a 10 "ws2812 controller"
+Et un petit connecteur pour pouvoir les programmer.
+
+Mais on n'a pas réussi à envoyer le code sur les cartes.
+La communication ne passe pas.
+
+Point à faire pas à pas sur ce qu'on a fait de travers
+
+(voir le projet LEDws2812 sur le PC de Patrick)
+
+- - - - - - - - - - - - -
+créer deux anims simple de LED
+(genre bleu et rouge)
+
+- - - - - - - - - - - - -
+Pouvoir choisir cette anim depuis le server
+Et depuis l'interface Web
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - -
+Codage de l'interface WEB
+- - - - - - - - - - - - - - - - - - - - - - -
+Montrer à Mehdi l'interface Groom
+
+- - - - - -
+Je n'arrive pas à faire fonctionner les RowLedBar en mode input
+Ca serait parfait pour gérer les output des grooms
 
 La fonction cbledbar n'est pas appelée
     ledBar = RowLedBar(name,listPin, click=self.cbledbar)
-	
-Manue carterres de son
+- - - - - -
 
-apporter la soundbox qui ne marche pas
 
-apporter les cartes pour coder les LEDBAR
+- - - - - -
+Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier
+
+On voit bien les inputs des grooms
+Mais, il n'affiche pas la couleur de départ à l'init du scenario.
+C'est dommage car c'est une information importante.
+- - - - - -
+
+
+
+
+
+
+
 
 
 

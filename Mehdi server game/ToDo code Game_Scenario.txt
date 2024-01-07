@@ -1,0 +1,80 @@
+
+
+
+TODO Code Game_Scenario
+
+
+
+
+Vérifier quel est le code d'une room standard
+Son cycle de vie
+
+Que se passse-t-il si le server plante pendant une partie?
+
+
+
+
+
+cycle de vie de Game_Scenario
+
+
+Reboot le matin
+
+
+pour chaque salle:
+
+Préparation
+	les portes et les coffres sont ouverts pour permettre aux acteurs de préparer la salle et le spièces d'or
+
+Init du jeu
+	fermeture des coffres et portes
+	Initialisation des variables des jeux
+
+Départ
+	cretains jeux acceuillent les joueurs (ex salle de Magie, l'enchanteresse parle)
+	il faut un Top départ donné par l'acteur de l'auberge.
+	
+	
+Jeu
+	prise de décision d'ouverture, de retours visuels et sonores
+	sauvegarde des réussites de chaque équipe
+	
+
+	
+A part dans la salle 3, Magie
+Chaque jeu est indépendant.
+Au boot du server, il est mis dans son Init, puis Jeu
+Ainsi, si le server plante et se relance, chaque props se remet en marche.
+
+
+cas particulier de la Salle 3:
+En cas de plantage, il faudrait pouvoir relancer la salle a un état d'accomplissement donné.
+Cela implique de sauvegarder sur disque l'état de la salle.
+(Notamment 
+	le niveau de victoires pour les paroles de l'enchanteresse
+	l'éclairage corruption/enchanteresse de chaque props
+	)
+
+
+- - - - - - - - - - - 
+Machine à état par Room:
+PrepareRoom
+InitRoom
+StartRoom
+PlayRoom
+
+- - - - - - - - - - - 
+Une equippe passe de room en room
+Elle est suivie au niveau du server qui stocke ses réussites dans une base de donnée
+(en discuter avec Mehdi)
+
+- - - - - - - - - - - 
+Le serveur suit plusieurs équipes à la fois.
+Quand une room passe en play, il déduit de quelle équipe il s'agit puisqu'elle était dans la room précédente.
+ 
+
+
+
+
+
+
