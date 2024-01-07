@@ -1,0 +1,16 @@
+
+Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier
+
+La fonction cbledbar n'est pas appelée
+    ledBar = RowLedBar(name,listPin, click=self.cbledbar)
+	
+Manue carterres de son
+
+apporter la soundbox qui ne marche pas
+
+apporter les cartes pour coder les LEDBAR
+
+
+
+
+
