@@ -28,6 +28,11 @@ Point à faire pas à pas sur ce qu'on a fait de travers
 
 (voir le projet LEDws2812 sur le PC de Patrick)
 
+
+IL FAUT APPUYER FORT
+
+
+
 - - - - - - - - - - - - -
 créer deux anims simple de LED
 (genre bleu et rouge)
@@ -39,6 +44,9 @@ Et depuis l'interface Web
 
 
 
+
+
+
 - - - - - - - - - - - - - - - - - - - - - - -
 Codage de l'interface WEB
 - - - - - - - - - - - - - - - - - - - - - - -
@@ -46,23 +54,23 @@ Montrer à Mehdi l'interface Groom
 
 - - - - - -
 Je n'arrive pas à faire fonctionner les RowLedBar en mode input
-Ca serait parfait pour gérer les output des grooms
+Ca serait parfait pour gérer les output des grooms 
 
 La fonction cbledbar n'est pas appelée
-    ledBar = RowLedBar(name,listPin, click=self.cbledbar)
+    ledBar = RowLedBar(name,listPin, click=self.cbledbar)    - done
 - - - - - -
 
 
 - - - - - -
 Peut-on appeler :
 self.hardware.doorTocTocSound.on_change(self.OnButtonDoorTocToc_value, call_immediately = False)
-plusieurs fois?
+plusieurs fois?   [Mehdi,:  No Problem], 
 - - - - - -
 
 
 
 - - - - - -
-Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier
+Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier  [Mehdi : ticket]
 
 On voit bien les inputs des grooms
 Mais, il n'affiche pas la couleur de départ à l'init du scenario.
@@ -70,6 +78,18 @@ C'est dommage car c'est une information importante.
 - - - - - -
 
 
+
+
+Mehdi:
+Oui on peut avoir l'état courtcircuit des grooms output.
+
+tester le bool groom.outputbay(2).overcurrent[2]
+Utilisé dans groom.py   ligne 64 environ
+[PAT à gérer]
+
+
+[Pat à faire]
+Au démarrage mettre tous les output à False
 
 
 
