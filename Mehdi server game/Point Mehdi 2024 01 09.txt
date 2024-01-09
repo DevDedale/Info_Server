@@ -54,6 +54,14 @@ La fonction cbledbar n'est pas appelée
 
 
 - - - - - -
+Peut-on appeler :
+self.hardware.doorTocTocSound.on_change(self.OnButtonDoorTocToc_value, call_immediately = False)
+plusieurs fois?
+- - - - - -
+
+
+
+- - - - - -
 Les LEDbar ne se mettent pas aux valeurs de départ des grooms. A vérifier
 
 On voit bien les inputs des grooms

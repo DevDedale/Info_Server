@@ -24,21 +24,23 @@ Reboot le matin
 pour chaque salle:
 
 Préparation
-	les portes et les coffres sont ouverts pour permettre aux acteurs de préparer la salle et le spièces d'or
+	les portes et les coffres sont ouverts pour permettre aux acteurs de préparer la salle et les pièces d'or
 
-Init du jeu
+Start du jeu
 	fermeture des coffres et portes
 	Initialisation des variables des jeux
 
-Départ
-	cretains jeux acceuillent les joueurs (ex salle de Magie, l'enchanteresse parle)
-	il faut un Top départ donné par l'acteur de l'auberge.
+	(certaines salles acceuillent les joueurs (ex salle de Magie, l'enchanteresse parle)
+	il faut un Top départ donné par l'acteur de l'auberge)
 	
-	
-Jeu
+
 	prise de décision d'ouverture, de retours visuels et sonores
 	sauvegarde des réussites de chaque équipe
 	
+Fin du jeu
+	Les lumières s'éteignent
+	Les portes à ouvrir pour la sortie sont dévérouillées
+	Les autres portes et coffres sont vérouillés
 
 	
 A part dans la salle 3, Magie
@@ -59,9 +61,9 @@ Cela implique de sauvegarder sur disque l'état de la salle.
 - - - - - - - - - - - 
 Machine à état par Room:
 PrepareRoom
-InitRoom
-StartRoom
-PlayRoom
+PreparationPhase
+GamePhase
+EndPhase
 
 - - - - - - - - - - - 
 Une equippe passe de room en room
