@@ -4,6 +4,7 @@ mgi-dedale
 xi6Hoogh
 
 Game Server 10.65.0.200
+https://server.dedale.local.magichanism.com/
 
 login
 patrick
