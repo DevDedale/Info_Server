@@ -58,6 +58,7 @@ mosquitto_sub -h 10.65.0.200 -t '#' -v | grep dmx
 grep		-->	selectionner les messages d'intérêt
 
 mosquitto_pub -h 10.65.0.200 -t mytopic/test -m "mon message"
+mosquitto_pub -h 10.65.0.200 -t dedale/devices/LED1/animation/set -m "blue"
 
 -t mytopic/test	-->	topic
 -m		-->	message
