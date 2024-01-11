@@ -5,6 +5,11 @@ TODO Code Game_Scenario
 
 
 
+Nettoyer le code de Groom.py
+
+Gérer mieux l'ID des courtcircuits
+
+
 
 Vérifier quel est le code d'une room standard
 Son cycle de vie
