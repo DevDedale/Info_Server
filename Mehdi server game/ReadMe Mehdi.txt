@@ -80,6 +80,9 @@ où 10.65.0.200  = IP du serveur magichanism
 
 
 - - - - - - - - - - - - - - - - - - 
+tout sauf unison
+mosquitto_sub -h 10.65.0.200 -t '#' -v | grep -v unison
+
 mosquitto_sub -h 10.65.0.200 -t '#' -v | grep groom
 mosquitto_sub -h 10.65.0.200 -t '#' -v | grep connected
 pour voir les adresses des appareils sur le reseau
