@@ -1,0 +1,25 @@
+
+14 zones
+
+
+0	
+1
+2
+3
+4
+5	Tresor1 (gemmes)
+6	Tresor2
+7	Tresor3
+8	Magie
+9	Magie
+10	Magie
+11	Crypte
+12	Crypte
+13	Crypte
+
+Manque
+Salle1 sas
+Salle1 volcan 
+Auberge enceinte à mettre
+Volcan enceintes mises, brancher les câbles
+Salle Mezannine 3 enceintes à mettre
