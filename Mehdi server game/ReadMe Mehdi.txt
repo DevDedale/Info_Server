@@ -1,3 +1,9 @@
+docker-compose logs --tail=100 -f game-server
+mosquitto_sub -h 10.65.0.200 -t '#' -v | grep -v unison
+
+
+
+
 Lancer MobaXTerm pour avoir une console sur le PC de Mehdi
 
 mon password global est:
