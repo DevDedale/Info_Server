@@ -1,3 +1,13 @@
+
+Arrivée des cartes sons.
+On abandnne si ce n'est pas immédiat.
+
+- - - - - - - - -
+
+As-tu encore des ws2812?
+
+- - - - - - - - -
+
 Quand je dÃ©truit un fichier.
 logic.py m'empÃªche de dÃ©marrer car il recherche l'ancien fichier.
 
