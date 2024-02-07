@@ -48,3 +48,13 @@ Est-ce que tu fais un init spécial dans:
 GameLogic().devices.dmx('wifidmx'
 
 Qu'on pourrait appeler à la main?
+
+
+
+- - - - - - -
+
+Quels sont les 'mode' possible dans 
+
+self.dmx.frame(12).animation(mode="sin", min = 0, max = 10, period = 20+count*2, cycles = 0)
+self.dmx.frame(11).animation(mode="rand", min = 0, max = 64, period = 10, cycles = 0)
+
