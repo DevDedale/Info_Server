@@ -1,0 +1,50 @@
+Quand je détruit un fichier.
+logic.py m'empêche de démarrer car il recherche l'ancien fichier.
+
+game-server_1  | ERROR:root: - in file /usr/share/mgi/mgi-game-server/game/logic.py:123, in recursive_reload : module = importlib.reload(module)
+game-server_1  | ERROR:root: - in file /usr/lib/python3.8/importlib/__init__.py:168, in reload : raise ModuleNotFoundError(f"spec not found for the module {name!r}", name=name)
+game-server_1  | ERROR:root:Exception ModuleNotFoundError in thread Thread-4: spec not found for the module 'rooms.roomMagic.gameMagicPainting'
+
+Comment vider le cache de la compilation?
+
+- - - - - - - - -
+
+
+Les RowLEDBarre ne fonctionnent plus comme avant.
+On ne voit pas les "leds" s'allumer quand l'input est actif.
+
+As-tu modifié quelquechose?
+
+- - - - - - - - - -
+
+
+
+On a un bug avec les wifidmx.
+
+Situation:
+Un boitier wifidlx relié en dmx à deux types de spot.
+
+
+
+Action:
+Débrancher puis rebrancher le boîtier
+Attendre qu'il se reconnecte
+
+
+Certains spots d'un certain type continuent à fonctionner normalement
+mais d'autres restent éteints
+
+
+Quoi qu'on envoie comme commande.
+
+
+Par contre si on change le code et donc qu'on relance l'app server, là les spots refonctionnent
+
+
+- - - - - - -
+
+Est-ce que tu fais un init spécial dans:
+
+GameLogic().devices.dmx('wifidmx'
+
+Qu'on pourrait appeler à la main?
