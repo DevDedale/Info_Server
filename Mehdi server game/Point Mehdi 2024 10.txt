@@ -1,0 +1,137 @@
+
+
+-----------------------------------
+-----------------------------------
+Questions
+-----------------------------------
+-----------------------------------
+
+
+Il y a des crash / déconnexions de temps en temps.
+Discuter de leur gravité.
+Comment les éviter.
+
+Voir l'image
+Crash Server A Discuter 2024-09-27 130843.png
+
+
+
+On utilise l'appli web en jeu.
+server.dedale.local.magichanism.com.
+
+Tout va bien sauf que une fois tous les 15 jours environ, elle plante.
+Elle reboot seule mais je me demandais si tu sais d'où ça vient?
+
+Pour info, j'ai éteint le server complètement mardi dernier et le plantage a eu lieu mercredi après-midi en milieu de session.
+
+Cordialement,
+
+Patrick
+
+
+Les messages d'erreur côté server:
+
+
+game-server_1  | ERROR:tornado.access:500 GET /socket.io/?EIO=4&transport=polling&t=P2UIzKW&sid=eyYhmXzAUGfRQ-WnAAHv (172.20.0.2) 1.18ms
+game-server_1  | ERROR:asyncio:Task exception was never retrieved
+game-server_1  | future: <Task finished name='Task-1149070' coro=<AsyncServer.handle_request() done, defined at /usr/share/mgi/mgi-game-server/venv/lib/python3.8/site-packages/engineio/async_server.py:199> exception=KeyError('Session is disconnected')>
+game-server_1  | Traceback (most recent call last):
+game-server_1  |   File "/usr/share/mgi/mgi-game-server/venv/lib/python3.8/site-packages/engineio/async_server.py", line 286, in handle_request
+game-server_1  |     socket = self._get_socket(sid)
+game-server_1  |   File "/usr/share/mgi/mgi-game-server/venv/lib/python3.8/site-packages/engineio/base_server.py", line 229, in _get_socket
+game-server_1  |     raise KeyError('Session is disconnected')
+game-server_1  | KeyError: 'Session is disconnected'
+
+
+
+
+-----------------------------------
+
+
+J'aimerai accéder au serveur de l'extérieur.
+Depuis chez moi.
+Tu peux montrer comment faire?
+Me donner les droits?
+
+-----------------------------------
+
+Je n'ai pas le mot de passe admin.
+
+
+-----------------------------------
+
+Comment tout remettre en place de 0
+
+-----------------------------------
+-----------------------------------
+Sons
+-----------------------------------
+-----------------------------------
+
+On avait de la friture sur notre enceinte de la grande salle.
+Un reboot de la soundboard l'élimine.
+
+-----------------------------------
+Mail 11 Juillet
+-----------------------------------
+Salut Mehdi,
+
+On a eu des problèmes de son depuis quelque temps et c'est seulement aujourd'hui que j'ai trouvé le coupable.
+
+Dans notre auberge, nous envoyons le son sur 3 sources
+Base, Music et Fight.
+
+Depuis quelque temps la musique et le fight était moins forts.
+Quand je les envoie seuls, ils sont à leur force normale. Quand je les envoie en combinaison avec le son de base, ils sont joués moins fort.
+
+Ces sons ne passent pas par la soundboard.
+
+Pour régler ce problème, un reboot server n'a pas suffit.
+Par contre, changer le nom des sources a réglé le problème.  (temporairement probablement) 
+
+extrait de mon code: 
+j'ai rajouté "2"  à la fin des noms des sources.
+
+    self.zoneAuberge = self.unison.zone('13')
+    self.sourceMusic = self.zoneAuberge.source('Music2')
+    self.sourceBase = self.zoneAuberge.source('Base2')
+    self.sourceFight = self.zoneAuberge.source('Fight2')
+
+
+On a eu le même problème et le même fix dans la salle volcan.
+La voix de l'enchanteresse était beaucoup plus faible quand jouée en même temps que le fond sonore du volcan.
+
+- - - - - - 
+
+Il y a probablement un fix à faire de ton côté sur les reset des sources.
+
+Patrick
+
+
+
+
+--------------------------------------
+Mail 15 Avril
+--------------------------------------
+
+Salut Mehdi,
+
+C'est juste pour t'informer d'un bug que j'ai rencontré.
+Il n'y a rien à faire pour nous car je l'ai contourné de mon côté.
+
+J'ai 6 coffres avec une gâche électrique associés chacun à une pin (sur deux output bay différentes).
+J'ai une porte sur ventouse sur une des deux outputbay.
+
+Quand je demande simultanément aux 6 coffres de s'ouvrir ou de se fermer, la porte s'ouvre également. Visiblement, sa sortie passe à False temporairement.
+
+Mon contournement: 
+Je demande aux 6 coffres de s'ouvrir/fermer l'un après l'autre avec un délai de 0.5 secondes.
+
+La porte ne s'ouvre plus.
+
+
+Comme déjà dit, je n'attends pas de correctif.
+C'est juste pour te mettre au courant.
+
+Patrick
+
