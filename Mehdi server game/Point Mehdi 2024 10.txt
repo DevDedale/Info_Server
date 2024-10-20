@@ -109,6 +109,32 @@ Je n'ai pas le mot de passe admin.
 
 Comment tout remettre en place de 0
 
+
+
+-----------------------------------
+
+game-server_1  | Invalid session SbKvn7hhIQHNSrLoAABk (further occurrences of this error will be logged with level INFO)
+game-server_1  | ERROR:engineio.server:Invalid session SbKvn7hhIQHNSrLoAABk (further occurrences of this error will be logged with level INFO)
+
+Je ne pense pas que ça a posé un problème. Mais je veux bien savoir ce que c'est.
+-> réponse de Mehdi: une légère déconnexion. Invisible.
+
+-----------------------------------
+J'ai fait un df.
+L'espace disque restant est très large: 19Giga
+Mais je me demande bien pourquoi 37Giga sont utilisés (?)
+
+patrick@mgi-dedale:~$ df
+Filesystem     1K-blocks     Used Available Use% Mounted on
+udev             1954080        0   1954080   0% /dev
+tmpfs             394388     1284    393104   1% /run
+/dev/sda2       59722652 37272716  19383724  66% /
+tmpfs            1971924        0   1971924   0% /dev/shm
+tmpfs               5120        0      5120   0% /run/lock
+/dev/sda1         523244     5904    517340   2% /boot/efi
+tmpfs             394384        0    394384   0% /run/user/1001
+
+
 -----------------------------------
 -----------------------------------
 Sons
