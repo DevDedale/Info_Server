@@ -1,4 +1,51 @@
 
+-----------------------------------
+-----------------------------------
+Réponses
+-----------------------------------
+-----------------------------------
+
+
+
+
+Pensent avoir un problème e leak sur un de leurs services.
+Probablement le son.
+Sont en phase de recherche de ce problème.
+Prévoient de passer faire un update quand ils auront trouvé.
+
+- - - - - 
+
+En attendant a mis en place au cours de la réunion:
+
+Un reboot server à 3h du matin chaue jour
+
+Une taille mémoire maximum pour chacun des services de manière à ce qu'un service redémarre seul en cas de leak sans redémarrer les autres services.
+Si c'est le service de son qui a un problème, le son sera coupé 30 secondes.
+
+
+- - - - - 
+
+Prévoient de donner un droit d'accès non admin aux utilisateurs afin pouvoir accéder depuis l'extérieur
+ 
+
+
+- - - - - 
+
+On a généré 1Giga de données sur disque depuis le début.
+Sur 19 disponnibles
+
+Faire 
+docker-compose down
+docker-compose up
+
+fait disparaître ces données.
+On l'a fait pendant la réunion.
+
+
+
+
+
+
 
 -----------------------------------
 -----------------------------------
